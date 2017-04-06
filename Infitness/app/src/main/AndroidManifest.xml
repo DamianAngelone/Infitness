@@ -17,6 +17,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <uses-feature android:name="@string/step_detector" android:required="false"/>
+        <uses-feature android:name="@string/step_counter" android:required="false"/>
         <activity android:name="comdamianangeloneinfitness.httpsgithub.infitness.Login" android:theme="@style/AppTheme.Dark"/>
         <activity android:name="comdamianangeloneinfitness.httpsgithub.infitness.User" android:theme="@style/AppTheme.Dark"/>
     </application>
