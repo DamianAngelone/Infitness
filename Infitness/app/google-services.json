@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "300255682330",
+    "firebase_url": "https://infitness-9dee1.firebaseio.com",
+    "project_id": "infitness-9dee1",
+    "storage_bucket": "infitness-9dee1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:300255682330:android:d932d4333070898f",
+        "android_client_info": {
+          "package_name": "comdamianangeloneinfitness.httpsgithub.infitness"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "300255682330-khlitgoteigdbpgkf58karbp4jelbde5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "comdamianangeloneinfitness.httpsgithub.infitness",
+            "certificate_hash": "c7350cde2192bb2af8a8c8754eab2d19bef6f933"
+          }
+        },
+        {
+          "client_id": "300255682330-fjl5vl5ritgvf446imicregc9v7lvou2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZ7VaIembIqsKcYhl4p23JqxNn1WA3j9k"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "300255682330-fjl5vl5ritgvf446imicregc9v7lvou2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

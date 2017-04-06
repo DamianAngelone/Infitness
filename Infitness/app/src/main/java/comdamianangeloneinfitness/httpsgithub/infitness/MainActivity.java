@@ -7,12 +7,18 @@ import android.widget.TextView;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class MainActivity extends AppCompatActivity {
+    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    //DatabaseReference ref = firebaseDatabase.getReference("Fk me");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //ref.setValue("fk u");
 
         Intent intent = new Intent(this, Login.class);
         startActivity(intent);

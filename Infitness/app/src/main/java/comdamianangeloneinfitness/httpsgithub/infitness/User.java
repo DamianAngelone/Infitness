@@ -3,6 +3,7 @@ package comdamianangeloneinfitness.httpsgithub.infitness;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -11,10 +12,20 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import butterknife.ButterKnife;
 import butterknife.Bind;
 
+
 public class User extends AppCompatActivity {
+
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference myRef = database.getReference("Users");
+
+    private UserProfile user;
+
     private static final String TAG = "SignupActivity";
 
     @Bind(R.id.input_name) EditText _nameText;
@@ -26,8 +37,16 @@ public class User extends AppCompatActivity {
     @Bind(R.id.btn_signup) Button _signupButton;
     @Bind(R.id.link_login) TextView _loginLink;
 
+    protected EditText userName;
+    protected EditText userEmail;
+    protected EditText userAddress;
+    protected EditText userNumber;
+    protected EditText userPassword;
+    protected EditText userPassword2;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
         ButterKnife.bind(this);
@@ -76,6 +95,10 @@ public class User extends AppCompatActivity {
 
         // TODO: Implement your own signup logic here.
 
+        user = new UserProfile(name, mobile, email, address, password, reEnterPassword);
+
+        myRef.push().setValue(user);
+
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
@@ -92,6 +115,10 @@ public class User extends AppCompatActivity {
     public void onSignupSuccess() {
         _signupButton.setEnabled(true);
         setResult(RESULT_OK, null);
+
+        Intent i = new Intent(this, Login.class);
+        startActivity(i);
+
         finish();
     }
 
@@ -124,7 +151,6 @@ public class User extends AppCompatActivity {
         } else {
             _addressText.setError(null);
         }
-
 
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             _emailText.setError("enter a valid email address");

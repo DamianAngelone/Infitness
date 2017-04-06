@@ -12,23 +12,55 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import butterknife.ButterKnife;
 import butterknife.Bind;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.ValueEventListener;
+import java.util.*;
+
 public class Login extends AppCompatActivity {
+
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference myRef = database.getReference("Users");
+
+    private UserProfile user;
+
     private static final String TAG = "Login";
     private static final int REQUEST_SIGNUP = 0;
-
+    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    private DatabaseReference ref = firebaseDatabase.getReference("Users");
     @Bind(R.id.input_email) EditText _emailText;
     @Bind(R.id.input_password) EditText _passwordText;
     @Bind(R.id.btn_login) Button _loginButton;
     @Bind(R.id.link_signup) TextView _signupLink;
 
+    private EditText userEmail;
+    private EditText userPassword;
+
+    ArrayList<String> existingEmails = new ArrayList<>();
+    ArrayList<String> existingPassword = new ArrayList<>();
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
+        /*
+        userEmail = (EditText)findViewById(R.id.input_email);
+        String email = userEmail.getText().toString();
+
+        userPassword = (EditText)findViewById(R.id.input_password);
+        String password = userPassword.getText().toString();
+        */
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+
+        //ref.push().child("Username").setValue("Damian");
 
         _loginButton.setOnClickListener(new View.OnClickListener() {
 
@@ -45,7 +77,7 @@ public class Login extends AppCompatActivity {
                 // Start the Signup activity
                 Intent intent = new Intent(getApplicationContext(), User.class);
                 startActivityForResult(intent, REQUEST_SIGNUP);
-                finish();
+                //finish();
                 overridePendingTransition(R.animator.push_left_in, R.animator.push_left_out);
             }
         });
@@ -72,6 +104,8 @@ public class Login extends AppCompatActivity {
 
         // TODO: Implement your own authentication logic here.
 
+        user = new UserProfile();
+
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
@@ -83,13 +117,13 @@ public class Login extends AppCompatActivity {
                 }, 3000);
     }
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_SIGNUP) {
             if (resultCode == RESULT_OK) {
 
                 // TODO: Implement successful signup logic here
+
                 // By default we just finish the Activity and log them in automatically
                 this.finish();
             }
@@ -134,5 +168,49 @@ public class Login extends AppCompatActivity {
         }
 
         return valid;
+    }
+
+    ///////////////////Check Duplicate Account////
+    public void UserRetrieve(){
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                collectUserInfo((Map<String,User>) dataSnapshot.getValue());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        // return Usergroup;
+    }
+
+    private void collectUserInfo(Map<String,User> users) {
+
+        existingEmails.clear();
+        existingPassword.clear();
+        //iterate through each user, ignoring their UID
+        for (Map.Entry<String, User> entry : users.entrySet()){
+            //Get user map
+            Map singleUser = (Map) entry.getValue();
+            //Get phone field and append to list
+            existingEmails.add((String) singleUser.get("email"));
+            existingPassword.add((String) singleUser.get("password"));
+        }
+    }
+
+    private boolean FoundUser(String username, String password){
+        for(int i = 0; i< existingEmails.size(); i++) {
+            if(username.equals(existingEmails.get(i))&& password.equals(existingPassword.get(i))) {
+
+                user.email = (String)(existingEmails.get(i));
+                user.password = (String)(existingEmails.get(i));
+                return true;
+            }
+        }
+        return false;
+
     }
 }
