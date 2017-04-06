@@ -6,11 +6,12 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     //DatabaseReference ref = firebaseDatabase.getReference("Fk me");
 
@@ -43,6 +44,13 @@ public class MainActivity extends AppCompatActivity {
 
         if (id == R.id.action_settings){
             return true;
+        }
+
+        else if (id == R.id.action_Sign_Out){
+
+            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+            startActivity(intent);
+            //finish();
         }
 
         return super.onOptionsItemSelected(item);

@@ -28,7 +28,7 @@ public class Login extends AppCompatActivity {
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference myRef = database.getReference("Users");
 
-    private UserProfile user;
+    private UserProfile user = new UserProfile();
 
     private static final String TAG = "Login";
     private static final int REQUEST_SIGNUP = 0;
@@ -48,6 +48,7 @@ public class Login extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
+        UserRetrieve();
         /*
         userEmail = (EditText)findViewById(R.id.input_email);
         String email = userEmail.getText().toString();
@@ -104,7 +105,7 @@ public class Login extends AppCompatActivity {
 
         // TODO: Implement your own authentication logic here.
 
-        user = new UserProfile();
+
 
         new android.os.Handler().postDelayed(
                 new Runnable() {
@@ -165,7 +166,12 @@ public class Login extends AppCompatActivity {
             valid = false;
         } else {
             _passwordText.setError(null);
+        }if(!FoundUser(email, password))
+        {
+            _passwordText.setError("password and username do not match");
+            valid = false;
         }
+
 
         return valid;
     }
@@ -176,7 +182,7 @@ public class Login extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                collectUserInfo((Map<String,User>) dataSnapshot.getValue());
+                collectUserInfo((Map<String,UserProfile>) dataSnapshot.getValue());
             }
 
             @Override
@@ -187,12 +193,10 @@ public class Login extends AppCompatActivity {
         // return Usergroup;
     }
 
-    private void collectUserInfo(Map<String,User> users) {
+    private void collectUserInfo(Map<String,UserProfile> users) {
 
-        existingEmails.clear();
-        existingPassword.clear();
         //iterate through each user, ignoring their UID
-        for (Map.Entry<String, User> entry : users.entrySet()){
+        for (Map.Entry<String, UserProfile> entry : users.entrySet()){
             //Get user map
             Map singleUser = (Map) entry.getValue();
             //Get phone field and append to list
@@ -201,16 +205,21 @@ public class Login extends AppCompatActivity {
         }
     }
 
-    private boolean FoundUser(String username, String password){
-        for(int i = 0; i< existingEmails.size(); i++) {
-            if(username.equals(existingEmails.get(i))&& password.equals(existingPassword.get(i))) {
+    private boolean FoundUser(String username, String password) {
 
-                user.email = (String)(existingEmails.get(i));
-                user.password = (String)(existingEmails.get(i));
-                return true;
+        try {
+            for (int i = 0; i < existingEmails.size(); i++) {
+                if (username.equals(existingEmails.get(i)) && password.equals(existingPassword.get(i))) {
+
+                    user.email = (String) (existingEmails.get(i));
+                    user.password = (String) (existingEmails.get(i));
+                    return true;
+                }
             }
+
+        } catch (NullPointerException e) {
+
         }
         return false;
-
     }
 }
