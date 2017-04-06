@@ -1,6 +1,0 @@
-<resources>
-    <string name="app_name">Infitness</string>
-    <string name="title_activity_login">Login</string>
-    <string name="title_activity_user">User</string>
-    <string name="action_settings">Settings</string>
-</resources>
