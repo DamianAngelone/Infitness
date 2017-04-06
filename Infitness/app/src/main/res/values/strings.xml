@@ -3,4 +3,7 @@
     <string name="title_activity_login">Login</string>
     <string name="title_activity_user">User</string>
     <string name="action_settings">Settings</string>
+    <string name="lorem_ipsum">Food</string>
+    <string name="Food_Tracker">Food</string>
+    <string name="title_activity_food_tracker_opener">FoodTrackerOpener</string>
 </resources>
