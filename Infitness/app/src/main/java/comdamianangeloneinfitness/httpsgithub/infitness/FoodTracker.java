@@ -33,9 +33,6 @@ public class FoodTracker extends Activity{
                 startActivity(new Intent(FoodTracker.this, FoodTrackerOpener.class));
             }
         });
-
-
-
     }
 
     @Override
@@ -43,6 +40,16 @@ public class FoodTracker extends Activity{
 
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        // Disable going back to the MainActivity
+        MainActivity.setState(false);
+        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+        startActivity(intent);
+        finish();
+
     }
 
     public void toggleMenu(View v){

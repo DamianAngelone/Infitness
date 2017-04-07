@@ -26,14 +26,27 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private boolean isSensorPresent = false;
     private TextView mStepsSinceReboot;
 
+    private static boolean allowed = true;
+
+    public static boolean getState(){
+        return allowed;
+    }
+    public static void setState(boolean s){
+        allowed = s;
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //ref.setValue("fk u");
 
-        Intent intent = new Intent(this, Login.class);
-        startActivity(intent);
+        if(allowed) {
+
+            Intent intent = new Intent(this, Login.class);
+            startActivity(intent);
+        }
 
         mSensorManager = (SensorManager)  this.getSystemService(Context.SENSOR_SERVICE);
         Button clickButton = (Button) findViewById(R.id.walkController);
@@ -130,7 +143,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         }
 
         else if (id == R.id.action_Sign_Out){
-
+            setState(true);
             Intent intent = new Intent(getApplicationContext(),MainActivity.class);
             startActivity(intent);
             //finish();
