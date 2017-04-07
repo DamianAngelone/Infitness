@@ -10,4 +10,6 @@ public class ExerciseHistory extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise_history);
     }
+
+
 }
