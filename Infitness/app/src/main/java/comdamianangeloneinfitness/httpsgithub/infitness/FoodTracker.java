@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.view.MenuItem;
 
 import butterknife.*;
 
@@ -36,13 +37,6 @@ public class FoodTracker extends Activity{
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
     public void onBackPressed() {
         // Disable going back to the MainActivity
         MainActivity.setState(false);
@@ -52,7 +46,27 @@ public class FoodTracker extends Activity{
 
     }
 
-    public void toggleMenu(View v){
-        this.toggleMenu(v);
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+
+        if (id == R.id.action_settings){
+            return true;
+        }
+
+        else if (id == R.id.action_Sign_Out){
+            MainActivity.setState(true);
+            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+            startActivity(intent);
+            //finish();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
