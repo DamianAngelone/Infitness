@@ -105,8 +105,6 @@ public class Login extends AppCompatActivity {
 
         // TODO: Implement your own authentication logic here.
 
-
-
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
@@ -195,6 +193,8 @@ public class Login extends AppCompatActivity {
 
     private void collectUserInfo(Map<String,UserProfile> users) {
 
+        existingEmails.clear();
+        existingPassword.clear();
         //iterate through each user, ignoring their UID
         for (Map.Entry<String, UserProfile> entry : users.entrySet()){
             //Get user map
