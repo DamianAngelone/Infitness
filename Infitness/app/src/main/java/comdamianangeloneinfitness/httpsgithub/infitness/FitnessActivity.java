@@ -1,6 +1,7 @@
 package comdamianangeloneinfitness.httpsgithub.infitness;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -67,7 +68,9 @@ public class FitnessActivity extends AppCompatActivity {
         });
         graph.addSeries(series2);
 
+        series.setColor(Color.GREEN);
         series.setTitle("Series1");
+        series.setColor(Color.RED);
         series2.setTitle("Series2");
         /*series2.setTitle("Series3");
         series2.setTitle("Series4");

@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/primary"
 
-    tools:context="comdamianangeloneinfitness.httpsgithub.infitness.MainActivity">
-
-
+    tools:context="comdamianangeloneinfitness.httpsgithub.infitness.MainActivity"
+    android:weightSum="1">
 
     <TextView
         android:layout_width="248dp"
@@ -27,16 +27,37 @@
          />
     <Button
         android:id="@+id/ftinessRegimen"
-        android:layout_width="wrap_content"
+        android:layout_width="316dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Fitness Regimen"
         android:textSize="30sp"/>
     <Button
         android:id="@+id/walkController"
-        android:layout_width="wrap_content"
+        android:layout_width="315dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Walk Controller"
         android:textSize="30sp"/>
+
+    <Spinner
+        android:id="@+id/spinner1"
+        android:layout_width="100dp"
+        android:layout_marginLeft="140dp"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown" />
+
+    <Button
+        android:id="@+id/setGoal"
+        android:layout_width="309dp"
+        android:layout_height="120dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_weight="0.44"
+        android:paddingTop="3dp"
+        android:text="Set Goal"
+        android:textSize="30sp" />
+
 </LinearLayout>
