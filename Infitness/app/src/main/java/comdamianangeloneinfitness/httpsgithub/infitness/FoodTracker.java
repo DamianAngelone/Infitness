@@ -27,13 +27,14 @@ public class FoodTracker extends Activity{
 
         getLayoutInflater().inflate((R.layout.food_tracker), null);
         setContentView(R.layout.food_tracker);
-        Button foodTrackerSideMenu = (Button)findViewById(R.id.button2);
+        Button foodTrackerSideMenu = (Button)findViewById(R.id.mealHistory);
         foodTrackerSideMenu.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 startActivity(new Intent(FoodTracker.this, FoodTrackerOpener.class));
             }
         });
+
     }
 
     @Override

@@ -11,13 +11,24 @@
         android:layout_width="368dp"
         android:layout_height="wrap_content"
         tools:context="comdamianangeloneinfitness.httpsgithub.infitness.FitnessActivity"
+        android:orientation="vertical"
         >
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/mealHistory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:text="Food History" />
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/nutritionHistory"
+            android:text="Search Food"/>\
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/viewFoodGoal"
+            android:text="View Nutrition Goal"/>
         </LinearLayout>
 </android.support.constraint.ConstraintLayout>
