@@ -39,6 +39,9 @@
             android:name=".FoodTrackerOpener"
             android:label="@string/title_activity_food_tracker_opener"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ButtonSettings">
+
+        </activity>
         <activity android:name=".MenuActivity" />
         <activity android:name=".FitnessActivity" />
         <activity android:name=".ExerciseHistory" />

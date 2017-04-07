@@ -1,7 +1,9 @@
 package comdamianangeloneinfitness.httpsgithub.infitness;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -21,6 +23,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
+
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference myRef = database.getReference("Users");
+
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     //DatabaseReference ref = firebaseDatabase.getReference("Fk me");
     private SensorManager mSensorManager;
@@ -30,6 +36,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     private static boolean allowed = true;
 
+    private static boolean PedometerFunctionality = true;
+    private static boolean FoodFunctionality= true;
+    private static boolean FitnessFunctionality = true;
+
     public static boolean getState(){
         return allowed;
     }
@@ -37,14 +47,38 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         allowed = s;
     }
 
+    public static boolean getPedometer(){
+        return PedometerFunctionality;
+    }
+    public static void setPedometer(boolean s){
+        PedometerFunctionality = s;
+    }
+
+    public static boolean getFood(){return FoodFunctionality;}
+    public static void setFood(boolean s){
+        FoodFunctionality = s;
+    }
+
+    public static boolean getFitness(){
+        return FitnessFunctionality;
+    }
+    public static void setFitness(boolean s){
+        FitnessFunctionality = s;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
+
+
+
         //ref.setValue("fk u");
 
-        Spinner dropdown = (Spinner)findViewById(R.id.spinner1);
+        final Spinner dropdown = (Spinner)findViewById(R.id.spinner1);
         String[] items = new String[]{"1", "2", "3", "4", "5"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items);
         dropdown.setAdapter(adapter);
@@ -84,7 +118,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         nutrition.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                startActivity(new Intent(MainActivity.this, FoodTracker.class));
+                if(getFood()) {
+                    startActivity(new Intent(MainActivity.this, FoodTracker.class));
+                }
+
             }
         });
 
@@ -92,7 +129,24 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         fitness.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                startActivity(new Intent(MainActivity.this, FitnessActivity.class));
+                if(getFitness()) {
+                    startActivity(new Intent(MainActivity.this, FitnessActivity.class));
+                }
+            }
+        });
+
+        Button setGoal = (Button)findViewById(R.id.setGoal);
+        setGoal.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+
+                final ProgressDialog progressDialog = new ProgressDialog(MainActivity.this, R.style.AppTheme_Dark_Dialog);
+                progressDialog.setIndeterminate(true);
+                progressDialog.setMessage("Setting Goal...");
+                progressDialog.show();
+
+
+               // myRef.push().child("Damian").setValue(dropdown.getAdapter());
             }
         });
 
@@ -146,7 +200,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         int id = item.getItemId();
 
         if (id == R.id.action_settings){
-            return true;
+            setState(true);
+            startActivity(new Intent(getApplicationContext(),ButtonSettings.class));
+
         }
 
         else if (id == R.id.action_Sign_Out){

@@ -153,7 +153,7 @@ public class User extends AppCompatActivity {
         }
 
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            _emailText.setError("enter a valid email address");
+            _emailText.setError("Enter a valid email address");
             valid = false;
         } else {
             _emailText.setError(null);
@@ -174,7 +174,7 @@ public class User extends AppCompatActivity {
         }
 
         if (reEnterPassword.isEmpty() || reEnterPassword.length() < 4 || reEnterPassword.length() > 10 || !(reEnterPassword.equals(password))) {
-            _reEnterPasswordText.setError("Password Do not match");
+            _reEnterPasswordText.setError("Passwords do not match");
             valid = false;
         } else {
             _reEnterPasswordText.setError(null);

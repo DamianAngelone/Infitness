@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="75dp"
+        android:layout_marginLeft="4dp"
+        android:layout_gravity="center"
+        android:text="Button for Fitness Regimen:"
+        android:textSize="30sp" />
+
+    <ToggleButton
+        android:id="@+id/fitnessButton"
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="130dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/toggleButton"
+        android:checked="true"
+        android:text="Off" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_gravity="center"
+        android:text="Button for Food Tracker:"
+        android:textSize="30sp" />
+
+    <ToggleButton
+        android:id="@+id/foodButton"
+        android:layout_marginLeft="130dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/toggleButton"
+        android:checked="true"
+        android:text="Off" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_gravity="center"
+        android:text="Button for Pedometer:"
+        android:textSize="30sp" />
+
+    <ToggleButton
+        android:id="@+id/pedometerButton"
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="130dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/toggleButton"
+        android:checked="true"
+        android:text="Off" />
+
+</LinearLayout>
