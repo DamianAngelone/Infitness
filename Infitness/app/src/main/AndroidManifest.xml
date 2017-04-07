@@ -19,12 +19,16 @@
             </intent-filter>
         </activity>
 
-        <uses-feature android:name="@string/step_detector" android:required="false"/>
-        <uses-feature android:name="@string/step_counter" android:required="false"/>
+        <uses-feature
+            android:name="@string/step_detector"
+            android:required="false" />
+        <uses-feature
+            android:name="@string/step_counter"
+            android:required="false" />
 
         <activity
             android:name=".FoodTracker"
-            android:label="@string/Food_Tracker"></activity>
+            android:label="@string/Food_Tracker" />
         <activity
             android:name=".Login"
             android:theme="@style/AppTheme.Dark" />
@@ -34,8 +38,12 @@
         <activity
             android:name=".FoodTrackerOpener"
             android:label="@string/title_activity_food_tracker_opener"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".MenuActivity" />
+        <activity android:name=".FitnessActivity" />
+        <activity android:name=".ExerciseHistory" />
+        <activity android:name=".ExerciseDataBase" />
+        <activity android:name=".ExerciseTrend"></activity>
     </application>
 
 </manifest>
